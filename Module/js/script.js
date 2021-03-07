@@ -4,8 +4,6 @@ const btnFilms = document.getElementById('btnFilms')
 
 const url = 'http://api.tvmaze.com/search/shows?q='
 
-
-
 input.addEventListener('change', (e) => {
     searchWord = e.target.value
 })
