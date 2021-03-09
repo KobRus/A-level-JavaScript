@@ -84,11 +84,11 @@ function getData(searchWord) {
                 postInfo.append(postLanguage)
                 postLanguage.append(postFavorite)
 
-                let test
-                postFavorite.addEventListener('click', (e) => {
-                    test = e.target
-                    console.log(test);
-                })
+                // let test
+                // postFavorite.addEventListener('click', (e) => {
+                //     test = e.target
+                //     console.log(test);
+                // })
             }); 
         })
     
