@@ -15,6 +15,7 @@ html {
     align-items: center;
     background-color: #292A2A;
     padding: 40px 0;
+    margin-bottom: 20px;
 }
 
 /* form */
@@ -87,9 +88,10 @@ button:before {
 #firstSelect {
     margin-right: 45px;
 }
+
 .select {
     position: absolute;
-    top: 30px;
+    top: 27px;
     left: 360px;
 }
 
@@ -101,7 +103,7 @@ select  {
     outline: none;
     font-weight: bold;
     background: #ffff;
-    font-weight: bold;
+    font-size: 18px;
 }
 
 /* main */
@@ -118,22 +120,27 @@ select  {
 /* post */
 
 .shortPost {
-    max-width: 200px;
+    max-width: 210px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 30px 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 5px;
     overflow: hidden;
     transition: all .5s;
+    position: relative;
 }
 
 .shortPost:hover {
     transform: scale(1.1);
 }
 
-.postImage img{
-    border-radius: 5px 5px 0 0;
+.postTitle {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding-left: 5px;
 }
 
 .postInfo {
@@ -143,19 +150,19 @@ select  {
 .postRating {
     display: inline-block;
     color: black;
-    font-size: 18px;
+    font-size: 15px;
     padding-top: 10px;
-    padding-left: 5px;
+    padding-left: 3px;
 }
 
-.postInfo span {
+.postStars {
     padding: 0;
 	font-size: 20px;
 	line-height: 1;
 	color: lightgrey;
 }
 
-.postInfo > span::before {
+.postStars::before {
     content: '★';
     color: gold;
 }
@@ -163,8 +170,31 @@ select  {
 .postLanguage {
     font-weight: bold;
     margin: 10px 0 5px;
-    display: flex;
-    align-items: center;
+    font-size: 10px;
+}
+
+.postFavorite {
+    font-size: 15px;
+    opacity: 0.4;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: grey;
+    background-image: url(../image/heart1.png);
+    background-position: center;
+    background-size: 1em;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    bottom: 2px;
+    right: 5px;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.postFavorite:hover {
+    opacity: 1;
+    cursor: pointer;
+    background-image: url(../image/heart2.png);
 }
 
 /* container_footer */

@@ -40,39 +40,55 @@ function getData(searchWord) {
     
         .then((data) => {
             data.forEach((item) => {
-                const modalPage = document.createElement('div')
+                // const modalPage = document.createElement('div')
                 const shortPost = document.createElement('div')
                 const postImage = document.createElement('div')
+                const postTitle = document.createElement('a')
                 const postInfo = document.createElement('div')
-                const postTitle = document.createElement('h3')
                 const postRating = document.createElement('p')
                 const postStars = document.createElement('span')
                 const postLanguage = document.createElement('p')
+                const postFavorite = document.createElement('span')
                 const img = document.createElement('img')
                 
-    
                 img.setAttribute('src', item.show.image.medium) 
+                postTitle.href = '#'
                 postTitle.innerHTML = item.show.name
                 postRating.innerHTML = item.show.rating.average
                 postLanguage.innerHTML = item.show.language
     
-                modalPage.classList = 'modalPage'
-                modalPage.id = 'myModalPage'
+                // modalPage.classList = 'modalPage'
+                // modalPage.id = 'myModalPage'
                 shortPost.classList = 'shortPost'
                 postImage.classList = 'postImage'
                 postInfo.classList = 'postInfo'
+                postStars.classList = 'postStars'
                 postRating.classList = 'postRating'
+                postTitle.classList = 'postTitle'
+
+                if(item.show.rating.average == null || item.show.rating.average == '') {
+                    postRating.innerHTML = 'Rating will be soon'
+                }
+
                 postLanguage.classList = 'postLanguage'
+                postFavorite.classList = 'postFavorite'
     
-                mainPost.appendChild(modalPage)
+                // mainPost.appendChild(modalPage)
                 mainPost.appendChild(shortPost)
                 shortPost.appendChild(postImage)
                 postImage.appendChild(img)
+                postImage.append(postTitle)
                 shortPost.appendChild(postInfo)
-                postInfo.prepend(postTitle)
                 postInfo.appendChild(postStars)
                 postStars.append(postRating)
                 postInfo.append(postLanguage)
+                postLanguage.append(postFavorite)
+
+                let test
+                postFavorite.addEventListener('click', (e) => {
+                    test = e.target
+                    console.log(test);
+                })
             }); 
         })
     
