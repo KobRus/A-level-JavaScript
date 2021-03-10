@@ -1,0 +1,87 @@
+class Card {
+    constructor(name, image, rate, favorite, language) {
+        this.name = name;
+        this.image = image;
+        this.rate = rate;
+        this.favorite = favorite;
+        this.language = language;
+    }
+
+    setDataToHTML() {
+        const shortPost = document.createElement('div')
+        const postImage = document.createElement('div')
+        const postTitle = document.createElement('a')
+        const postInfo = document.createElement('div')
+        const postRating = document.createElement('p')
+        const postStars = document.createElement('span')
+        const postLanguage = document.createElement('p')
+        const postFavorite = document.createElement('span')
+        const img = document.createElement('img')
+
+        img.setAttribute('src', this.image)
+        postTitle.href = '#'
+        postTitle.innerHTML = this.name;
+        postRating.innerHTML = this.rate;
+        postLanguage.innerHTML = this.language;
+
+        shortPost.classList = 'shortPost'
+        postImage.classList = 'postImage'
+        postInfo.classList = 'postInfo'
+        postStars.classList = 'postStars'
+        postRating.classList = 'postRating'
+        postTitle.classList = 'postTitle'
+
+        postLanguage.classList = 'postLanguage'
+        postFavorite.classList = 'postFavorite'
+
+        mainPost.appendChild(shortPost)
+        shortPost.appendChild(postImage)
+        postImage.appendChild(img)
+        postImage.append(postTitle)
+        shortPost.appendChild(postInfo)
+        postInfo.appendChild(postStars)
+        postStars.append(postRating)
+        postInfo.append(postLanguage)
+        postLanguage.append(postFavorite)
+
+        postFavorite.addEventListener('click', () => {
+            this.setFavorite(postFavorite);                    
+        });
+
+        this.setDefaultRate(postRating);
+        this.setDefaultFavorite(this.favorite, postFavorite);  
+    }
+
+    setDefaultFavorite(favorite, postFavorite) {
+        postFavorite.style.opacity = 1;
+
+        if(favorite) {
+            postFavorite.style.backgroundImage = 'url(../image/heart2.png)';
+        }
+        else {
+            postFavorite.style.backgroundImage = 'url(../image/heart1.png)';
+        }
+    }
+
+    setDefaultRate(postRating) {
+        if(this.rate == null || this.rate == '') {
+            postRating.innerHTML = 'Rating will be soon';
+        }
+    }
+
+    setFavorite(postFavorite) {
+
+        postFavorite.style.opacity = 1;
+
+        if(!this.favorite) {
+            postFavorite.style.backgroundImage = 'url(../image/heart2.png)';
+            this.favorite = true;
+            localStorage.setItem(this.name, JSON.stringify(this));
+        }
+        else {
+            postFavorite.style.backgroundImage = 'url(../image/heart1.png)';
+            this.favorite = false;
+            localStorage.removeItem(this.name);
+        }     
+    }
+}

@@ -101,7 +101,7 @@ select  {
     border: 2px solid #acacac;
     border-radius: 20px;
     outline: none;
-    font-weight: bold;
+    /* font-weight: bold; */
     background: #ffff;
     font-size: 18px;
 }
@@ -159,7 +159,7 @@ select  {
     padding: 0;
 	font-size: 20px;
 	line-height: 1;
-	color: lightgrey;
+    color: #acacac;
 }
 
 .postStars::before {
@@ -179,7 +179,7 @@ select  {
     position: absolute;
     width: 25px;
     height: 25px;
-    background-color: grey;
+    /* background-color: #acacac; */
     background-image: url(../image/heart1.png);
     background-position: center;
     background-size: 1em;
@@ -196,6 +196,12 @@ select  {
     cursor: pointer;
     background-image: url(../image/heart2.png);
 }
+
+/* .postFavorite:active {
+    opacity: 1;
+    cursor: pointer;
+    background-image: url(../image/heart2.png);
+} */
 
 /* container_footer */
 
