@@ -1,12 +1,12 @@
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
+// function getRandomInt(max) {
+//     return Math.floor(Math.random() * Math.floor(max));
+// }
 
 function getRandomFilms() {
-    const wordArr = ['new', 'blood', 'love', 'comedy', 'wars', 'war'];
-    let rand = getRandomInt(wordArr.length);
+    // const wordArr = ['new', 'blood', 'love', 'comedy', 'wars', 'war'];
+    // let rand = getRandomInt(wordArr.length);
     // console.log(wordArr[rand]);
-    getData(wordArr[rand], 'English');
+    getData('new', 'English');
 }
 
 function clearList () {
@@ -18,7 +18,8 @@ function createCard(item) {
         item.show.image.medium,
         item.show.rating.average,
         false,
-        item.show.language);
+        item.show.language,
+        item.show.genres);
 
     card.setDataToHTML();
 }

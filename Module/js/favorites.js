@@ -9,8 +9,10 @@ function displayFavorites() {
             tempCard.rate,
             true,
             tempCard.language,
+            tempCard.genres
             );
             card.setDataToHTML();   
     }
-    }
+}
+
 displayFavorites();

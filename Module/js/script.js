@@ -8,7 +8,6 @@ let searchWord = '';
 getRandomFilms();
 
 
-
 input.addEventListener('change', (e) => {
     searchWord = e.target.value;
 });
