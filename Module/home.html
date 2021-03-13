@@ -14,7 +14,7 @@
     <header>
         <div class="header">
             <div class="form">
-                <input id= "input" type="text" placeholder="Find her...">
+                <input id= "input" type="text">
                 <button id="btn" type="submit"></button>
             </div>
             <div class="nav">
@@ -28,18 +28,19 @@
         </div>
         <div class="select">
             <div class="select__option">
-                <select name="language" id="firstSelect">
-                    <option value="0">Select language</option>
+                <select name="" id="languageFilter">
+                    <option value="Select language">Select language</option>
                     <option value="English">English</option>
                     <option value="Russian">Russian</option>
-                    <!-- <option value="4">Japanese</option> -->
                 </select>
-                <select name="genre" id="secondSelect">
-                    <option value="0">Select genre</option>
-                    <option value="Horror">Horror</option>
+                <select name="genre" id="genresFilter">
+                    <option value="Select genre">Select genre</option>
+                    <option value="Romance">Romance</option>
                     <option value="Action">Action</option>
                     <option value="Drama">Drama</option>
                     <option value="Comedy">Comedy</option>
+                    <option value="War">War</option>
+                    <option value="History">History</option>
                 </select>
             </div>
         </div>
@@ -80,7 +81,14 @@
             </div>
         </div>
     </footer>
-    <script src="js/dataHandler.js"></script>
+    <div id="modal">
+        <div class="modalWrap">
+            <div id="modalPageWindow">
+                <span id="close">&times;</span>
+            </div>
+        </div>
+    </div>
+
     <script src="js/card.js"></script>
     <script src="js/script.js"></script>
 </body>

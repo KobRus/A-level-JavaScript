@@ -9,6 +9,8 @@ class Card {
     }
 
     setDataToHTML() {
+        // const close = document.getElementById('close') 
+        
         const shortPost = document.createElement('div')
         const postImage = document.createElement('div')
         const postTitle = document.createElement('a')
@@ -52,9 +54,18 @@ class Card {
             this.setFavorite(postFavorite);
         });
 
+        // postImage.addEventListener('click', () => {
+        //     this.getModal(postImage)
+        // })
+
+        // close.addEventListener('click', () => {
+        //     this.closeModal()
+        // })
+        
         this.setDefaultRate(postRating);
-        this.setFefaultRenge(postGenres)
+        this.setGenre(postGenres)
         this.setDefaultFavorite(this.favorite, postFavorite);  
+        this.checkLike(postFavorite)
     }
 
     setDefaultFavorite(favorite, postFavorite) {
@@ -72,7 +83,7 @@ class Card {
         }
     }
 
-    setFefaultRenge(postGenres) {
+    setGenre(postGenres) {
         if(this.genres == null || this.genres == '') {
             postGenres.innerHTML = 'Genres will be soon'
         }
@@ -90,4 +101,18 @@ class Card {
             localStorage.removeItem(this.name);
         }     
     }
+
+    checkLike(postFavorite){
+        if(localStorage.getItem(this.name)) {
+            postFavorite.style.backgroundImage = 'url(../image/heart2.png)';
+        }
+    }
+
+    // getModal() {
+    //     modal.style.display = 'block'
+    // }  
+
+    // closeModal() {
+    //     modal.style.display = 'none'
+    // }
 }
