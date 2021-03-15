@@ -1,42 +1,38 @@
-const input = document.getElementById('input');
-const btn = document.getElementById('btn');
-const btnFilms = document.getElementById('btnFilms');
+const input = document.getElementById('input')
+const btn = document.getElementById('btn')
+const btnFilms = document.getElementById('btnFilms')
 
-let url = 'http://api.tvmaze.com/search/shows?q=';
-let searchWord = '';
+
+let url = 'http://api.tvmaze.com/search/shows?q='
+let searchWord = ''
 
 input.addEventListener('change', (e) => {
-        searchWord = e.target.value;
-});
+        searchWord = e.target.value
+})
+
 
 btn.addEventListener('click', () => {
 
     if(searchWord === undefined || searchWord === null) {
-        return;
+        return
     }
 
-    let languageFilter = document.getElementById('languageFilter').value;
+    let languageFilter = document.getElementById('languageFilter').value
     let genresFilter = document.getElementById('genresFilter').value
 
-    clearList();
-    getData(searchWord, languageFilter, genresFilter);
-});
+    clearList()
+    getData(searchWord, languageFilter, genresFilter)
+})
+
 
 
 // dataHandler
 
-// function getRandomInt(max) {
-//     return Math.floor(Math.random() * Math.floor(max));
-// }
-
 function getRandomFilms() {
-    // const wordArr = ['new', 'blood', 'love', 'comedy', 'wars', 'war'];
-    // let rand = getRandomInt(wordArr.length);
-    // console.log(wordArr[rand]);
-    getData('War', 'English', 'Genres');
+    getData('Blood', 'English', 'Drama')
 }
 
-getRandomFilms();
+getRandomFilms()
 
 function clearList () {
     let mainPost= document.getElementById('mainPost')
@@ -49,18 +45,19 @@ function createCard(item) {
         item.show.rating.average,
         false,
         item.show.language,
-        item.show.genres);
+        item.show.genres)
 
-    card.setDataToHTML();
+    card.setDataToHTML()
 }
+
 
 function getData(searchWord, languageFilter, genresFilter) {
     let query = url + searchWord
     fetch(query)
         .then((response) => {
             if (response.status !== 200) {
-                console.log('Looks like there was a problem');
-                console.log(`Status Code: ${response.status}`);
+                console.log('Looks like there was a problem')
+                console.log(`Status Code: ${response.status}`)
                 return;
             }
             return response.json();

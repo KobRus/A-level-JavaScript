@@ -9,8 +9,9 @@ class Card {
     }
 
     setDataToHTML() {
-        // const close = document.getElementById('close') 
-        
+        const popup = document.querySelector('.popup')
+        const popupClose = document.querySelector('.popup__close')
+
         const shortPost = document.createElement('div')
         const postImage = document.createElement('div')
         const postTitle = document.createElement('a')
@@ -54,19 +55,35 @@ class Card {
             this.setFavorite(postFavorite);
         });
 
-        // postImage.addEventListener('click', () => {
-        //     this.getModal(postImage)
-        // })
+        // test popUp
+        postImage.addEventListener('click', () => {
+            this.popUpOpen(postImage)
+        })
 
-        // close.addEventListener('click', () => {
-        //     this.closeModal()
-        // })
-        
+        popupClose.addEventListener('click', () => {
+            this.popUpClose(popupClose)
+        })
+
+        this.popUpOpen(postImage)
+        this.popUpClose(popupClose)
+
+        // test ////////////////////////////////////////////////
+
         this.setDefaultRate(postRating);
         this.setGenre(postGenres)
         this.setDefaultFavorite(this.favorite, postFavorite);  
         this.checkLike(postFavorite)
     }
+
+    // test popUp
+    popUpOpen() {
+        popup.classList.add('open')
+    }
+
+    popUpClose() {
+        popup.classList.remove('open')
+    }
+    // test ////////////////////////////////////////////////////
 
     setDefaultFavorite(favorite, postFavorite) {
         if(favorite) {
@@ -74,18 +91,6 @@ class Card {
         }
         else {
             postFavorite.style.backgroundImage = 'url(../image/heart1.png)';
-        }
-    }
-
-    setDefaultRate(postRating) {
-        if(this.rate == null || this.rate == '') {
-            postRating.innerHTML = 'Rating will be soon';
-        }
-    }
-
-    setGenre(postGenres) {
-        if(this.genres == null || this.genres == '') {
-            postGenres.innerHTML = 'Genres will be soon'
         }
     }
 
@@ -108,11 +113,16 @@ class Card {
         }
     }
 
-    // getModal() {
-    //     modal.style.display = 'block'
-    // }  
+    setDefaultRate(postRating) {
+        if(this.rate == null || this.rate == '') {
+            postRating.innerHTML = 'Rating will be soon';
+        }
+    }
 
-    // closeModal() {
-    //     modal.style.display = 'none'
-    // }
+    setGenre(postGenres) {
+        if(this.genres == null || this.genres == '') {
+            postGenres.innerHTML = 'Genres will be soon'
+        }
+    }
+
 }

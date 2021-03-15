@@ -278,84 +278,44 @@ select  {
 }
 
 /* modal */
-
-#modal {
-    /* width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
+.popup {
     position: fixed;
     top: 0;
-    display: none;
-    overflow: hidden; */
-    position: fixed;
-    display: none;
-
-    top: 0;
-    bottom: 0;
     right: 0;
     left: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    /* display: flex; */
-    flex-flow: column nowrap;
-    z-index: 99;
-    background-color: rgba(0,0,0,0.5);
-    margin: 0 auto;
-    
-
-    /* Чтобы окно не прилипало к границе
-    браузера установим отступы */
-    padding:30px 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transition: all .8s ease 0s;
 }
 
-/* #modal:active {
+.popup.open {
+    opacity: 1;
     visibility: visible;
 }
 
-#modal:active #modalPageWindow {
-    transform: scale(1);
+.popup.open .popup__content {
+    transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
     opacity: 1;
-} */
-
-.modaWrap {
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 100%;
-    min-height: 100%;
-    margin: auto;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    
-
 }
 
-#modalPageWindow {
-    /* width: 600px;
-    max-width: 100%;
-    height: 500px;
-    max-height: 100%;
-    position: absolute;
-    background-color: white;
-    left: 460px;
-    top: 50px; */
-    margin: 0 auto;
-    flex-shrink: 0;
-    flex-grow: 0;
-    background: #fff;
+.popup__content {
     width: 600px;
-    max-width: 100%;
-    overflow: visible;
-    transition: transform 0.2s ease 0s;
-    transform: scale(0.9);
+    border-radius: 5px;
+    background: #ffff;
+    margin: 100px auto;
+    transform: perspective(600px) translate(0px, -100px) rotateX(45deg);
+    opacity: 0;
+    transition: all .8s ease 0s;
 }
 
-#close {
+.popup__close {
     display: flex;
     justify-content: flex-end;
-    font-size: 50px;
     margin-right: 10px;
+    font-size: 30px;
     cursor: pointer;
 }
