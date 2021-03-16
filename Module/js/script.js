@@ -41,11 +41,13 @@ function clearList () {
 
 function createCard(item) {
     const card = new Card(item.show.name,
-        item.show.image.medium,
+        item.show.image.original,
         item.show.rating.average,
         false,
         item.show.language,
-        item.show.genres)
+        item.show.genres,
+        item.show.summary,
+        item.show.premiered)
 
     card.setDataToHTML()
 }
