@@ -3,22 +3,22 @@ const btn = document.getElementById('btn')
 const btnFilms = document.getElementById('btnFilms')
 
 
-let url = 'http://api.tvmaze.com/search/shows?q='
-let searchWord = ''
+let url = 'http://api.tvmaze.com/search/shows?q=';
+let searchWord = '';
 
 input.addEventListener('change', (e) => {
-        searchWord = e.target.value
+        searchWord = e.target.value;
 })
 
 
 btn.addEventListener('click', () => {
 
-    if(searchWord === undefined || searchWord === null) {
+    if(searchWord == undefined || searchWord == null || searchWord == '') {
         return
     }
 
-    let languageFilter = document.getElementById('languageFilter').value
-    let genresFilter = document.getElementById('genresFilter').value
+    let languageFilter = document.getElementById('languageFilter').value;
+    let genresFilter = document.getElementById('genresFilter').value;
 
     clearList()
     getData(searchWord, languageFilter, genresFilter)
@@ -29,14 +29,14 @@ btn.addEventListener('click', () => {
 // dataHandler
 
 function getRandomFilms() {
-    getData('Blood', 'English', 'Drama')
+    getData('New', 'Select language', 'Select genre')
 }
 
 getRandomFilms()
 
 function clearList () {
     let mainPost= document.getElementById('mainPost')
-    mainPost.innerText = ''
+    mainPost.innerText = '';
 }
 
 function createCard(item) {
@@ -54,29 +54,27 @@ function createCard(item) {
 
 
 function getData(searchWord, languageFilter, genresFilter) {
-    let query = url + searchWord
+    let query = url + searchWord;
     fetch(query)
         .then((response) => {
             if (response.status !== 200) {
-                console.log('Looks like there was a problem')
-                console.log(`Status Code: ${response.status}`)
+                console.log('Looks like there was a problem');
+                console.log(`Status Code: ${response.status}`);
                 return;
             }
             return response.json();
         }
         )
-    
         .then((data) => {
             data.forEach((item) => {  
                 if(item.show.language == languageFilter || languageFilter == 'Select language') {
                     if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
-                        createCard(item)
+                        createCard(item);
                     }
                 }
             }); 
         })
-
         .catch((err) => {
-            console.log('Fetch Error', err)
+            console.log('Fetch Error', err);
         })
 }

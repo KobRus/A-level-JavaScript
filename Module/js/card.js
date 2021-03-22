@@ -50,31 +50,28 @@ class Card {
         postInfo.append(postLanguage)
         postLanguage.append(postFavorite)
 
-
         // addEventListener
         postFavorite.addEventListener('click', () => {
             this.setFavorite(postFavorite);
         });
 
         postImage.addEventListener('click', () => {
-            this.popUpOpen(postImage)
+            this.popUpOpen(postImage);
         })
 
-
-        // this.popUpOpen()
         this.setDefaultRate(postRating);
-        this.setGenre(postGenres)
+        this.setGenre(postGenres);
         this.setDefaultFavorite(this.favorite, postFavorite);  
-        this.checkLike(postFavorite)
+        this.checkLike(postFavorite);
     }
 
     popUpOpen() {
-        const popUp = document.createElement('div')
-        const popUpBody = document.createElement('div')
+        const popUp = document.createElement('div');
+        const popUpBody = document.createElement('div');
         // const popUpContent = document.createElement('div')
         // const popUpArea = document.createElement('div')
 
-        let summary= ''
+        let summary= '';
         if (this.summary?.length > 150) {
             summary = this.summary.slice(0, 150)
         }
@@ -91,26 +88,26 @@ class Card {
             </div>
         `
 
-        popUp.setAttribute('class', 'pop__up')
-        popUpBody.setAttribute('class', 'popUp__body')
+        popUp.setAttribute('class', 'pop__up');
+        popUpBody.setAttribute('class', 'popUp__body');
         // popUpContent.setAttribute('class', 'popUp__content')
 
-        document.body.append(popUp)
-        popUp.appendChild(popUpBody)
+        document.body.append(popUp);
+        popUp.appendChild(popUpBody);
         // popUpBody.appendChild(popUpContent)
 
-        popUp.classList.add('open')
-
+        popUp.classList.add('open');
         
         // popUpClose
 
-        const popUpClose = document.getElementById('popUp__close') 
+        const popUpClose = document.getElementById('popUp__close');
+
         popUpClose.addEventListener('click', () => {
-            // popUp.classList.remove('open')
-            popUp.remove()
-            // setTimeout(() => {
-            //     popUp.remove()
-            // }, 200)
+            popUp.classList.remove('open')
+            // popUp.remove()
+            setTimeout(() => {
+                popUp.remove()
+            }, 500)
         })
     }
 
@@ -150,7 +147,7 @@ class Card {
 
     setGenre(postGenres) {
         if(this.genres == null || this.genres == '') {
-            postGenres.innerHTML = 'Genres will be soon'
+            postGenres.innerHTML = 'Genres will be soon';
         }
     }
 }
