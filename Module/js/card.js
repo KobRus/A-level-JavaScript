@@ -22,8 +22,8 @@ class Card {
         const img = document.createElement('img')
         const postGenres = document.createElement('p')
 
-        img.setAttribute('src', this.image)
-        postTitle.href = '#'
+        img.setAttribute('src', this.image);
+        postTitle.href = '#';
         postTitle.innerHTML = this.name;
         postRating.innerHTML = this.rate;
         postLanguage.innerHTML = this.language;
@@ -68,33 +68,34 @@ class Card {
     popUpOpen() {
         const popUp = document.createElement('div');
         const popUpBody = document.createElement('div');
-        // const popUpContent = document.createElement('div')
-        // const popUpArea = document.createElement('div')
+        const popUpContent = document.createElement('div');
 
-        let summary= '';
-        if (this.summary?.length > 150) {
+        let summary = '';
+        if (this.summary.length > 150 || this.summary.length < 150) {
             summary = this.summary.slice(0, 150)
         }
+
         
-        popUpBody.innerHTML += `
+        popUpContent.innerHTML += `
             <div><img class="popUp__img" src=${this.image}></div>
             <div class="popUp__info">
                 <span id="popUp__close">&times;</span>
                 <p class="popUp__filmName">${this.name}</p>
                 <p class="popUp__filmPremiered">${this.premiered}</p>
                 <p class="popUp__filmGenre">${this.genres.join(', ')}</p>
-                <p class="popUp__filmSummary">${summary} ...</p>
+                <p class="popUp__filmSummary">${summary}...</p>
                 <p class="popUp__filmLang">${this.language}</p>
             </div>
         `
+        // maibe delete class popUp__filmPremiered and popUp__filmGenre plus popUp__filmSummary
 
         popUp.setAttribute('class', 'pop__up');
         popUpBody.setAttribute('class', 'popUp__body');
-        // popUpContent.setAttribute('class', 'popUp__content')
+        popUpContent.setAttribute('class', 'popUp__content')
 
         document.body.append(popUp);
         popUp.appendChild(popUpBody);
-        // popUpBody.appendChild(popUpContent)
+        popUpBody.appendChild(popUpContent)
 
         popUp.classList.add('open');
         
@@ -102,12 +103,12 @@ class Card {
 
         const popUpClose = document.getElementById('popUp__close');
 
+        
         popUpClose.addEventListener('click', () => {
             popUp.classList.remove('open')
-            // popUp.remove()
             setTimeout(() => {
                 popUp.remove()
-            }, 500)
+            }, 800)
         })
     }
 

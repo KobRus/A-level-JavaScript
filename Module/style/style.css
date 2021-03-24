@@ -278,40 +278,58 @@ select  {
 }
 
 /* Pop Up */
+
 .pop__up {
     position: fixed;
     width: 100%;
     height: 100%;
+    background-color: rgba(0,0,0,0.8);
     top: 0;
-    right: 0;   
     left: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
     opacity: 0;
-    /* visibility: hidden; */
-    /* overflow-y: hidden; */
-    /* overflow-x: hidden; */
-    transition: all .8s ease 0s;
+    visibility: hidden;
+    transition: all 0.8s ease 0s;
 }
 
-.pop__up.open {
+/* .popUp__area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+} */
+
+.pop__up.open {    
     opacity: 1;
     visibility: visible;
 }
 
-.pop__up.open .popUp__body {
+.pop__up.open .popUp__content {
     transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
     opacity: 1;
 }
 
 .popUp__body {
+    min-height: 100%;
     display: flex;
-    width: 600px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+    
+}
+
+.popUp__content {
+    display: flex;
     height: 420px;
+    background-color: #ffff;
+    color: #000;
+    width: 750px;
+    max-width: 800px;
     border-radius: 5px;
-    background: #ffff;
-    margin: 100px auto;
+    position: relative;
+    transform: perspective(600px) translate(0px, 100%) rotateX(45deg);
     opacity: 0;
+    transition: all 0.8s ease 0s;
 }
 
 #popUp__close {
@@ -322,18 +340,22 @@ select  {
     top: 0;
 }
 
+#popUp__close:hover {
+    /* transform: rotateY(45deg); */
+}
+
 .popUp__img {
+    border-radius: 5px 0px 0px 5px;
     width: 300px;
     height: 420px;
 }
-
 
 .popUp__info {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 5px;
+    margin: 10px;
     position: relative;
 }
 
@@ -342,12 +364,6 @@ select  {
     font-weight: bold;
     padding: 8px 0;
 }
-
-/* .popUp__filmGenre {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px 0;
-} */
 
 .popUp__filmLang {
     font-weight: bold;
