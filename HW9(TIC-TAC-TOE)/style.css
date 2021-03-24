@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+}
+.info {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    padding: 0 10px;
+    font-weight: 500;
+}
+
+#game {
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background: #F0F8FF;
+    margin: 0 auto;
+}
+
+.block {
+    width: 198px;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#link {
+    background: #A52A2A;
+    color: #ffff;
+    padding: 15px 30px;
+}
