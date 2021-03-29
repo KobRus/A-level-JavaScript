@@ -207,6 +207,28 @@ select  {
     background-image: url(../image/heart2.png);
 }
 
+.main__pagination {
+    display: flex;
+    justify-content: center;
+}
+
+#pagination {
+    display: flex;
+    list-style: none;
+}
+
+#pagination li {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#pagination li:hover {
+    background-color: #acacac;
+}
+
 /* container_footer */
 
 .footer {

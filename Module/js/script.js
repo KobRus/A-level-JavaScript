@@ -3,8 +3,8 @@ const btn = document.getElementById('btn')
 const btnFilms = document.getElementById('btnFilms')
 
 
-// let url = 'http://api.tvmaze.com/shows?page=';
-let url = 'http://api.tvmaze.com/shows?page=1';
+// let finderUrl = 'http://api.tvmaze.com/shows?q=';
+const mainUrl = 'http://api.tvmaze.com/shows?page=1';
 let searchWord = '';
 
 input.addEventListener('change', (e) => {
@@ -34,12 +34,6 @@ btn.addEventListener('click', () => {
 
 // dataHandler
 
-function getRandomFilms() {
-    // getData('New', 'Select language', 'Select genre');
-}
-
-getRandomFilms()
-
 function clearList () {
     let mainPost= document.getElementById('mainPost')
     mainPost.innerText = '';
@@ -61,10 +55,7 @@ function createCard(item) {
 
 // function getData(searchWord, languageFilter, genresFilter) {
     // let query = url + searchWord;
-    // const promise = fetch('http://api.tvmaze.com/shows?page=1')
-    // let query = url.slice(0, 28)
-    fetch(url)
-    // promise
+    fetch(mainUrl)
         .then((response) => {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem');
@@ -75,7 +66,8 @@ function createCard(item) {
         }
         )
         .then((data) => {
-            data.forEach((item) => {  
+            let sliceData = data.slice(0, 10)
+            sliceData.forEach((item) => {  
                 createCard(item)
                 // if(item.show.language == languageFilter || languageFilter == 'Select language') {
                 //     if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
