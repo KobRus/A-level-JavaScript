@@ -1,36 +1,10 @@
 const input = document.getElementById('input')
 const btn = document.getElementById('btn')
-const btnFilms = document.getElementById('btnFilms')
+const pageNext = document.getElementsByClassName('.page')
+const btnNext = document.getElementById("test3");
 
-
-// let finderUrl = 'http://api.tvmaze.com/shows?q=';
-const mainUrl = 'http://api.tvmaze.com/shows?page=1';
-let searchWord = '';
-
-input.addEventListener('change', (e) => {
-    searchWord = e.target.value;
-})
-
-
-btn.addEventListener('click', () => {
-
-    if(searchWord == undefined || searchWord == null) {
-        return;
-    }
-    
-    // test
-    if(searchWord == ''){
-        // getData('Select language', 'Select genre')
-    }
-
-    let languageFilter = document.getElementById('languageFilter').value;
-    let genresFilter = document.getElementById('genresFilter').value;
-
-    clearList()
-    getData(searchWord, languageFilter, genresFilter)
-})
-
-
+let languageFilter = document.getElementById('languageFilter').value;
+let genresFilter = document.getElementById('genresFilter').value;
 
 // dataHandler
 
@@ -52,31 +26,74 @@ function createCard(item) {
     card.setDataToHTML()
 }
 
+function createCardForSearch(item) {
+    const newCard = new Card(item.show.name,
+        item.show.image.original,
+        item.show.rating.average,
+        false,
+        item.show.language,
+        item.show.genres,
+        item.show.summary,
+        item.show.premiered)
 
-// function getData(searchWord, languageFilter, genresFilter) {
-    // let query = url + searchWord;
-    fetch(mainUrl)
-        .then((response) => {
-            if (response.status !== 200) {
-                console.log('Looks like there was a problem');
-                console.log(`Status Code: ${response.status}`);
-                return;
-            }
-            return response.json();
-        }
-        )
-        .then((data) => {
-            let sliceData = data.slice(0, 10)
-            sliceData.forEach((item) => {  
-                createCard(item)
-                // if(item.show.language == languageFilter || languageFilter == 'Select language') {
-                //     if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
-                //         createCard(item);
-                //     }
-                // }
-            }); 
-        })
-        .catch((err) => {
-            console.log('Fetch Error', err);
-        })
-// }
+    newCard.setDataToHTML()
+}
+
+
+const apiUrl = "http://api.tvmaze.com/shows"
+const searchApiUrl = " http://api.tvmaze.com/search/shows"
+let shows = []
+let currentPage = 0
+let searchQuery = ""
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchData();
+});
+
+const fetchData = async (type) => {
+    if (type === 'search') {
+        const url = `${searchApiUrl}?q=${searchQuery}`
+        const response = await fetch(url)
+        const res = await response.json()
+        currentPage++
+        shows = res.splice(0, 10).forEach((item) => {createCardForSearch(item)})
+    }else {
+        const url = `${apiUrl}?page=${currentPage + 1}`
+        const response = await fetch(url)
+        const res = await response.json()
+        currentPage++
+        shows = res.splice(0, 10).forEach((item) => {createCard(item)})
+    }
+}
+
+const nextHandler = () => {
+    fetchData()
+    clearList()
+}
+
+input.addEventListener('change', () => {
+    searchQuery = input.value
+})
+
+btnNext.addEventListener("click", nextHandler)
+
+btn.addEventListener('click', () => {
+    fetchData('search');
+    searchQuery = ''
+    if(searchQuery == undefined || searchQuery == null ) {
+        return
+    }
+    
+    // test
+    // if(searchWord == ''){
+    //     getData('Select language', 'Select genre')
+    // }
+
+    clearList()
+})
+
+//    if(item.show.language == languageFilter || languageFilter == 'Select language') {
+//        if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
+//            createCardForSearch(item);
+//        }
+//    }

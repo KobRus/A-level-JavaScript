@@ -82,7 +82,7 @@ class Card {
                 <span id="popUp__close">&times;</span>
                 <p class="popUp__filmName">${this.name}</p>
                 <p class="popUp__filmPremiered">${this.premiered}</p>
-                <p class="popUp__filmGenre">${this.genres.join(', ')}</p>
+                <p class="popUp__filmGenre">Genre: ${this.genres.join(', ')}</p>
                 <p class="popUp__filmSummary">${summary}...</p>
                 <p class="popUp__filmLang">${this.language}</p>
             </div>
