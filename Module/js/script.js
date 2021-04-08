@@ -3,9 +3,6 @@ const btn = document.getElementById('btn')
 const pageNext = document.getElementsByClassName('.page')
 const btnNext = document.getElementById("test3");
 
-let languageFilter = document.getElementById('languageFilter').value;
-let genresFilter = document.getElementById('genresFilter').value;
-
 // dataHandler
 
 function clearList () {
@@ -56,7 +53,16 @@ const fetchData = async (type) => {
         const response = await fetch(url)
         const res = await response.json()
         currentPage++
-        shows = res.splice(0, 10).forEach((item) => {createCardForSearch(item)})
+        shows = res.splice(0, 10)
+        shows.forEach((item) => {
+            let languageFilter = document.getElementById('languageFilter').value;
+            let genresFilter = document.getElementById('genresFilter').value;
+            if(item.show.language == languageFilter || languageFilter == 'Select language') {
+                if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
+                    createCardForSearch(item);
+                }
+            }
+        })
     }else {
         const url = `${apiUrl}?page=${currentPage + 1}`
         const response = await fetch(url)
@@ -73,27 +79,15 @@ const nextHandler = () => {
 
 input.addEventListener('change', () => {
     searchQuery = input.value
+    // if(searchQuery == undefined || searchQuery == null ) {
+    //     return
+    // }
 })
 
 btnNext.addEventListener("click", nextHandler)
 
 btn.addEventListener('click', () => {
-    fetchData('search');
+    fetchData('search')
     searchQuery = ''
-    if(searchQuery == undefined || searchQuery == null ) {
-        return
-    }
-    
-    // test
-    // if(searchWord == ''){
-    //     getData('Select language', 'Select genre')
-    // }
-
     clearList()
 })
-
-//    if(item.show.language == languageFilter || languageFilter == 'Select language') {
-//        if(item.show.genres.some((item) => item == genresFilter) || genresFilter == 'Select genre'){
-//            createCardForSearch(item);
-//        }
-//    }
