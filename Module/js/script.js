@@ -79,9 +79,6 @@ const nextHandler = () => {
 
 input.addEventListener('change', () => {
     searchQuery = input.value
-    // if(searchQuery == undefined || searchQuery == null ) {
-    //     return
-    // }
 })
 
 btnNext.addEventListener("click", nextHandler)
